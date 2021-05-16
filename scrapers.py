@@ -25,7 +25,7 @@ class Ulule(Scraper):
         content = await r.text()
         m = re.search(r'"committed": (\d+),', content)
         if m is not None:
-            val = int(m.group(1))
+            val = float(m.group(1))
             return val
         raise ValueError("Not found in text")
 

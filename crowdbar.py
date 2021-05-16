@@ -1,6 +1,6 @@
 import aiohttp
 import aiohttp.web
-import babel
+import babel.numbers
 import jinja2
 
 from scrapers import SCRAPERS, Ulule
@@ -20,8 +20,8 @@ async def bar(request):
         value = -1
     tpl = request.app['template_env'].get_template('bar.html')
     res = tpl.render(
-        bar_value=value,
-        bar_total=goal,
+        bar_value=round(value, 2),
+        bar_total=round(goal, 2),
         rainbow=rainbow,
     )
     return aiohttp.web.Response(body=res, content_type='text/html')
@@ -33,13 +33,14 @@ async def index(request):
     return aiohttp.web.Response(body=res, content_type='text/html')
 
 
-def get_app(argv):
+async def get_app():
     app = aiohttp.web.Application()
     app['session'] = aiohttp.ClientSession()
     app['template_env'] = env = jinja2.Environment(
         loader=jinja2.FileSystemLoader('templates'),
         autoescape=jinja2.select_autoescape(['html', 'xml'])
     )
+    app['template_env'].filters['format_decimal'] = babel.numbers.format_decimal
     app.router.add_get("/", index)
     app.router.add_get("/bar", bar)
     return app
