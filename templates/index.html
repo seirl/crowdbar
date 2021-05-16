@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Crowdbar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <main>
+        <div class="col-md-7 col-lg-8">
+          <div class="py-5 text-center">
+            <h2>Crowdbar</h2>
+            <p class="lead">Enter your crowdbar details:</p>
+          </div>
+          <form method="get" action="bar">
+            <div class="form-group">
+              <label for="scraper">Crowdfunding website</label>
+              <select name="scraper" class="form-control">
+                {% for name, cls in scrapers.items() %}
+                  <option value="{{ name }}">{{ cls.__name__ }}</option>
+                {% endfor %}
+              </select>
+              <small class="form-text text-muted">Choose among supported websites</small>
+            </div>
+            <div class="form-group">
+              <label for="slug">Slug</label>
+              <input class="form-control" type="text" name="slug">
+              <small class="form-text text-muted">blablabla</small>
+            </div>
+            <div class="form-group">
+              <label for="goal">Goal amount</label>
+              <input class="form-control" type="number" name="goal">
+              <small class="form-text text-muted">The crowdfunding target amount</small>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="rainbow">
+              <label class="form-check-label" for="rainbow">Rainbow effect after 100%</label>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Create</button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2021 Antoine Pietri</p>
+    </footer>
+    </div>
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
+</html>

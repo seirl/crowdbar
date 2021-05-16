@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta http-equiv="refresh" content="20">
+        <style>
+@keyframes rainbow {
+    0% {background-position:0% 82%}
+    50% {background-position:100% 19%}
+    100% {background-position:0% 82%}
+}
+
+.rainbow {
+    background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3, #ff2400, #ff2400);
+    background-repeat: repeat-x;
+    animation: rainbow 6s ease infinite;
+    background-size: 30% 100%;
+}
+
+.bar-text {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: Arial Black, Arial Bold, sans;
+    font-size: 2em;
+}
+        </style>
+    </head>
+    <body>
+        <div class="progress" style="height: 3em;">
+            <div
+                class="
+                    progress-bar progress-bar-striped bg-danger
+                    progress-bar-animated bar-text
+                    {%- if rainbow and bar_value > bar_total %} rainbow{% endif %}"
+                role="progressbar"
+                style="width: {{ bar_value * 100 // bar_total }}%;"
+                aria-valuenow="{{ bar_value }}"
+                aria-valuemin="0"
+                aria-valuemax="{{ bar_total }}">
+                    <span class="justify-content-center d-flex position-absolute w-100">
+                        {{ bar_value }} / {{ bar_total }} €
+                    </span>
+                </div>
+        </div>
+
+        <!--
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        -->
+    </body>
+</html>
