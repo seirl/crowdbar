@@ -9,10 +9,20 @@ from scrapers import SCRAPERS, Ulule
 async def bar(request):
     scraper = SCRAPERS[request.query['scraper']]
     slug = request.query['slug']
-    goal = int(request.query.get('goal', 1))
+    goal = int(request.query.get('goal', 1) or 1)
     rainbow = (
         request.query.get('rainbow', '').lower() in ('on', 'yes', 'true')
     )
+    animated = (
+        request.query.get('animated', '').lower() in ('on', 'yes', 'true')
+    )
+    color_class = {
+        'blue': 'primary',
+        'green': 'success',
+        'cyan': 'info',
+        'yellow': 'warning',
+        'red': 'danger',
+    }.get(request.query.get('color'), 'primary')
 
     try:
         value = await scraper(request.app['session'], slug).get_value()
@@ -22,7 +32,9 @@ async def bar(request):
     res = tpl.render(
         bar_value=round(value, 2),
         bar_total=round(goal, 2),
+        color_class=color_class,
         rainbow=rainbow,
+        animated=animated,
     )
     return aiohttp.web.Response(body=res, content_type='text/html')
 

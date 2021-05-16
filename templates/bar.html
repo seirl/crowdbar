@@ -30,8 +30,8 @@
       <div class="progress" style="height: 3em;">
         <div
           class="
-          progress-bar progress-bar-striped bg-danger
-          progress-bar-animated bar-text
+          progress-bar progress-bar-striped bg-{{ color_class }}
+          {% if animated %}progress-bar-animated {% endif %}bar-text
           {%- if rainbow and bar_value > bar_total %} rainbow{% endif %}"
           role="progressbar"
           style="width: {{ bar_value * 100 // bar_total }}%;"

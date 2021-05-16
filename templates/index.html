@@ -33,8 +33,24 @@
               <input class="form-control" type="number" name="goal">
               <small class="form-text text-muted">The crowdfunding target amount</small>
             </div>
+            <hr />
+            <div class="form-group">
+              <label for="color">Color</label>
+              <select name="color" class="form-control">
+                  <option class="font-weight-bold text-success" value="green">Green</option>
+                  <option class="font-weight-bold text-primary" value="blue">Blue</option>
+                  <option class="font-weight-bold text-info" value="cyan">Cyan</option>
+                  <option class="font-weight-bold text-warning" value="yellow">Yellow</option>
+                  <option class="font-weight-bold text-danger" value="red">Red</option>
+              </select>
+              <small class="form-text text-muted">Choose among supported websites</small>
+            </div>
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" name="rainbow">
+              <input type="checkbox" class="form-check-input" name="animated" checked>
+              <label class="form-check-label" for="rainbow">Animated progress</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="rainbow" checked>
               <label class="form-check-label" for="rainbow">Rainbow effect after 100%</label>
             </div>
             <hr />
