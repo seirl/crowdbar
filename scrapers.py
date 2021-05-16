@@ -30,7 +30,7 @@ class Ulule(Scraper):
         raise ValueError("Not found in text")
 
 
-class Leetchi:
+class Leetchi(Scraper):
     url_template = 'https://www.leetchi.com/c/{slug}'
 
     async def get_value(self):
@@ -42,13 +42,13 @@ class Leetchi:
         return value
 
 
-class Cagnotte:
+class Cagnotte(Scraper):
     url_template = 'https://cagnotte.me/{slug}/fr'
 
     async def get_value(self):
         r = await self.session.get(self.get_url())
         html = lxml.html.fromstring(await r.text())
-        elt = html.xpath("//span[@class='collected-amount-label']/text()")
+        elt = html.xpath("//div[@class='collected-amount-label']/text()")
         txt = elt[0].strip()
         value = float(txt.split()[0].replace(',', '.'))
         return value
