@@ -16,6 +16,9 @@ async def bar(request):
     animated = (
         request.query.get('animated', '').lower() in ('on', 'yes', 'true')
     )
+    use_percent = (
+        request.query.get('percent', '').lower() in ('on', 'yes', 'true')
+    )
     color_class = {
         'blue': 'primary',
         'green': 'success',
@@ -35,6 +38,7 @@ async def bar(request):
         color_class=color_class,
         rainbow=rainbow,
         animated=animated,
+        use_percent=use_percent,
     )
     return aiohttp.web.Response(body=res, content_type='text/html')
 

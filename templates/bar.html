@@ -39,7 +39,11 @@
           aria-valuemin="0"
           aria-valuemax="{{ bar_total }}">
           <span class="justify-content-center d-flex position-absolute w-100">
+            {% if use_percent %}
+            {{ ((bar_value * 100) // bar_total)|format_decimal(locale='fr_FR') }} %
+            {% else %}
             {{ bar_value|format_decimal(locale='fr_FR') }} / {{ bar_total|format_decimal(locale='fr_FR') }} €
+            {% endif %}
           </span>
         </div>
       </div>
