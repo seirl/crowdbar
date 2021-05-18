@@ -18,16 +18,12 @@ class Scraper:
 
 
 class Ulule(Scraper):
-    url_template = 'https://www.ulule.com/{slug}'
+    url_template = 'https://api.ulule.com/v1/projects/{slug}'
 
     async def get_value(self):
         r = await self.session.get(self.get_url())
-        content = await r.text()
-        m = re.search(r'"committed": (\d+),', content)
-        if m is not None:
-            val = float(m.group(1))
-            return val
-        raise ValueError("Not found in text")
+        content = await r.json()
+        return float(content['committed'])
 
 
 class Leetchi(Scraper):
