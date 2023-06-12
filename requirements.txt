@@ -1,4 +1,0 @@
-aiohttp
-jinja2
-babel
-lxml
