@@ -1,6 +1,5 @@
 import lxml
 import lxml.html
-import re
 
 
 class Scraper:
@@ -11,6 +10,8 @@ class Scraper:
         self.slug = slug
 
     def get_url(self):
+        if self.url_template is None:
+            raise NotImplementedError("url_template not set for scraper.")
         return self.url_template.format(slug=self.slug)
 
     async def get_value(self):

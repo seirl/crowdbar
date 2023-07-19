@@ -3,7 +3,7 @@ import aiohttp.web
 import babel.numbers
 import jinja2
 
-from .scrapers import SCRAPERS, Ulule
+from .scrapers import SCRAPERS
 
 
 async def bar(request):
@@ -52,11 +52,13 @@ async def index(request):
 async def get_app(argv=None):
     app = aiohttp.web.Application()
     app['session'] = aiohttp.ClientSession()
-    app['template_env'] = env = jinja2.Environment(
+    app['template_env'] = jinja2.Environment(
         loader=jinja2.PackageLoader('crowdbar', 'templates'),
         autoescape=jinja2.select_autoescape(['html', 'xml'])
     )
-    app['template_env'].filters['format_decimal'] = babel.numbers.format_decimal
+    app['template_env'].filters['format_decimal'] = (
+        babel.numbers.format_decimal
+    )
     app.router.add_get("/", index)
     app.router.add_get("/bar", bar)
     return app
