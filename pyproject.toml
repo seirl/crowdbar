@@ -18,6 +18,11 @@ dependencies = [
 [project.urls]
 repository = "https://github.com/seirl/crowdbar"
 
+[tool.setuptools.package-data]
+"crowdbar" = [
+    "templates/**/*.html",
+]
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
